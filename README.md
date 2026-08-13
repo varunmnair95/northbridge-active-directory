@@ -1,5 +1,12 @@
 # NorthBridge Enterprise Active Directory
 
+![Windows Server](https://img.shields.io/badge/Windows%20Server-2025-0078D4?logo=windows\&logoColor=white)
+![Active Directory](https://img.shields.io/badge/Active%20Directory-AD%20DS-0078D4?logo=microsoft\&logoColor=white)
+![DNS](https://img.shields.io/badge/DNS-Configured-4285F4)
+![Group Policy](https://img.shields.io/badge/Group%20Policy-Configured-5C2D91)
+![VirtualBox](https://img.shields.io/badge/VirtualBox-Lab-183A61?logo=virtualbox\&logoColor=white)
+![UTM](https://img.shields.io/badge/UTM-Lab-000000)
+
 ## 📌 Project Overview
 
 NorthBridge is a hands-on Windows Active Directory lab built to practice and demonstrate real-world **IT administration, identity and access management, troubleshooting, and security operations** skills.
