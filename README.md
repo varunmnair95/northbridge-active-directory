@@ -26,7 +26,40 @@ This repository documents **my own implementation, screenshots, findings, and tr
 | 💻 Client             | `IT-PC01` `FIN-PC01` `HR-PC01` `OPS-PC01` `MGT-PC01`|
 | 🪟 Server OS          | Windows Server 2025   |
 | 🪟 Client OS          | Windows 11 Pro        |
-| 📦 Virtualization     | VirtualBox + UTM/QEMU |
+| 📦 Virtualization     | VirtualBox (Server) + UTM/QEMU (Client) |
+
+---
+
+## ⚙️ System Setup & Virtualization
+
+The lab was deployed across two host systems due to differences in available RAM and CPU architecture.
+
+### 🖥️ Host 1 — Active Directory Server
+
+- **Host OS:** Ubuntu 26.04
+- **CPU:** Intel Core i3
+- **RAM:** 8 GB
+- **Hypervisor:** VirtualBox
+- **VM:** Windows Server 2025
+- **Role:** Domain Controller / Active Directory Server
+
+### 🍎 Host 2 — Windows Client
+
+- **Host OS:** macOS Tahoe 26.6.1
+- **CPU:** Apple M4
+- **RAM:** 16 GB
+- **Architecture:** ARM64
+- **Virtualization:** UTM/QEMU
+- **VM:** Windows 11 Pro ARM64
+- **Role:** Domain-joined Client
+
+### 🔄 Setup Flexibility
+
+The hardware and virtualization platforms used above are **not mandatory**. If sufficient resources and compatible architecture are available, both VMs can be hosted on a single system using one suitable hypervisor.
+
+The important requirement is a functional **Windows Server + Windows Client environment with network connectivity between them**.
+
+> 💡 The two-host setup was a practical choice based on the available hardware resources and CPU architectures, not a requirement of the lab.
 
 ---
 
