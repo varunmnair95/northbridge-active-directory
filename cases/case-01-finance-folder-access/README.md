@@ -1,102 +1,82 @@
-# 🔐 Case 01 — Finance Folder Access Issue
+# Case 01 — Finance Folder Access Issue
 
-## 📌 Case Summary
+## 📌 Overview
 
-A Finance user reports that they are unable to access the Finance department shared folder from the `FIN-PC01` workstation.
+A Finance user reported that they could log in to `FIN-PC01` but could not access the Finance shared folder.
 
-The objective is to investigate the reported access problem, identify the root cause, restore appropriate access, and validate the resolution.
+This case was completed collaboratively by [Mr. Hari Krishnan R K](https://github.com/harikrishnan-rk), [Mr. Manu P Nair](https://github.com/manunair16), and [Mr. Varun M Nair](https://github.com/varunmnair95).
 
-This case is a collaborative exercise between [Mr. Hari Krishnan R K](https://github.com/harikrishnan-rk), [Mr. Manu P Nair](https://github.com/manunair16), and [Mr. Varun M Nair](https://github.com/varunmnair95), with each participant working in an independent lab environment and maintaining their own evidence and documentation.
+Each participant worked in an independent NorthBridge lab environment.
 
----
+## 👤 My Role
 
-## 🖥️ Environment
+**Documentation / Change Management**
 
-| Component                | Details                          |
-| ------------------------ | -------------------------------- |
-| 🌐 Domain                | `northbridge.local`              |
-| 🖥️ Domain Controller    | `SRV-DC01`                       |
-| 💻 Finance Workstation   | `FIN-PC01`                       |
-| 📂 Resource              | Finance department shared folder |
-| 👥 Expected Access Group | `GG_Finance`                     |
+My responsibility was to maintain the case record, document the technical findings and change, verify the supporting evidence, and confirm that the case was properly validated before closure.
 
----
+## 🎫 Incident
 
-## 🤝 Case Roles
+The reported problem was:
 
-| Participant                                                 | Role                        | Primary Responsibility                                                 |
-| ----------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------------- |
-| [Mr. Hari Krishnan R K](https://github.com/harikrishnan-rk) | 🧑‍💻 Initial Triage        | User report, reproduction, initial checks and evidence collection      |
-| [Mr. Manu P Nair](https://github.com/manunair16)            | 🔍 Technical Investigation  | AD groups, share permissions, NTFS permissions and root-cause analysis |
-| [Mr. Varun M Nair](https://github.com/varunmnair95)         | 🛠️ Resolution & Validation | Remediation, access testing and final validation                       |
+> Finance user could log in to `FIN-PC01` but could not access `\\SRV-DC01\Finance`.
 
-### My Role
+The Helpdesk investigation confirmed the reported access failure.
 
-**Resolution & Validation**
+**Helpdesk evidence:**
+[Hari — Finance access denied](https://github.com/harikrishnan-rk/Northbridge-Active-Directory/blob/main/cases/case-01-finance-folder-access/evidence/helpdesk/02-finance-access-denied.png)
 
-My responsibility is to apply the approved remediation and confirm that the reported access problem has been resolved.
+## 🔎 Technical Findings
 
-I will focus on:
+IT Support investigated the user's Active Directory group membership and the Finance permission configuration.
 
-* 🧩 Reviewing the technical findings
-* 🛠️ Applying the approved remediation
-* 🔐 Verifying the resulting access configuration
-* 💻 Retesting access from `FIN-PC01`
-* 📸 Capturing remediation evidence
-* ✅ Confirming successful access
-* 📝 Documenting the final result
+The investigation found that the affected user was not a member of `GG_Finance`.
 
----
+**Investigation evidence:**
 
-## 🔎 Investigation Flow
+* [Manu — User group membership](https://github.com/manunair16/northbridge-active-directory/blob/main/cases/case-01-finance-folder-access/evidence/investigation/01-user-membership.png)
+* [Manu — GG_Finance membership](https://github.com/manunair16/northbridge-active-directory/blob/main/cases/case-01-finance-folder-access/evidence/investigation/02-groups-members.png)
 
-```text
-Investigation Findings
-    ↓
-Approved Remediation
-    ↓
-Configuration Change
-    ↓
-Access Retest
-    ↓
-Validation
-    ↓
-Case Closure
-```
+The existing Finance permissions were already assigned to `GG_Finance`.
 
----
+**Permission evidence:**
 
-## 📸 Evidence
+* [Manu — Share permissions](https://github.com/manunair16/northbridge-active-directory/blob/main/cases/case-01-finance-folder-access/evidence/permissions/03-share-permission.png)
+* [Manu — NTFS permissions](https://github.com/manunair16/northbridge-active-directory/blob/main/cases/case-01-finance-folder-access/evidence/permissions/04-ntfs-share-permission.png)
 
-Remediation and validation evidence will be stored under:
+## 🛠️ Change
 
-`evidence/`
+The affected Finance user was added back to:
 
-Evidence will focus on the configuration change and successful access validation.
+`GG_Finance`
 
----
+The existing Share and NTFS permissions were not changed.
 
-## 📊 Case Status
+**Change evidence:**
+[Manu — User added to GG_Finance](https://github.com/manunair16/northbridge-active-directory/blob/main/cases/case-01-finance-folder-access/evidence/remediation/05-user-added-to-group.png)
 
-**Status:** ⏳ Awaiting Investigation Findings
+## ✅ Validation
 
-**Root Cause:** To be determined
+After the group membership was restored, access to the Finance shared folder was successfully tested.
 
-**Resolution:** To be determined
+**Validation evidence:**
+[Manu — Finance access restored](https://github.com/manunair16/northbridge-active-directory/blob/main/cases/case-01-finance-folder-access/evidence/remediation/06-user-access-regained.png)
 
-**Validation:** Pending
+## 📋 Closure
 
----
+The reported access problem was resolved by restoring the user's expected Finance security-group membership.
 
-## 🔗 Collaboration
+No unnecessary Share or NTFS permission changes were made.
 
-This case demonstrates a collaborative troubleshooting workflow while maintaining individual ownership of each participant's work.
+The case can therefore be closed.
 
-Each participant maintains:
+## 💡 Lesson Learned
 
-* 🧪 An independent lab environment
-* 📸 Their own screenshots and evidence
-* 📝 Their own findings and documentation
-* 👤 Their assigned role within the case
+Access changes should follow the existing authorization model. Restoring the expected security-group membership was preferable to creating direct permissions for the individual user.
 
-The repositories are maintained independently rather than combining all three participants' work into a single repository.
+## 🤝 Collaboration
+
+* [Mr. Hari Krishnan R K](https://github.com/harikrishnan-rk)
+* [Mr. Manu P Nair](https://github.com/manunair16)
+* [Mr. Varun M Nair](https://github.com/varunmnair95)
+
+Each participant maintained their own evidence and documentation.
